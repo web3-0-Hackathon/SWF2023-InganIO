@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inganio.demo.Nft.Mapper.NftMapper">
+
+	<insert id="nftContractIns" parameterType="hashMap" useGeneratedKeys="true" keyProperty="conSeq">
+			/* nftContractIns :: nft 컨트랙션 등록 */
+			INSERT INTO TB_CONTRACT SET
+			conSeq = #{conSeq}
+			,hostId = 1
+			, symbol = #{symbol}
+			, nameKo = #{nameKo}
+			, nameEn = #{nameEn}
+			, statusCont = #{status}
+			, typeCont = #{type}
+			, contractAddress = #{contractAddress}
+			, createdDate = #{createdDate}
+			, modifiedDate = #{modifiedDate}
+	</insert>
+	
+	<insert id="nftTrIns" parameterType="hashMap" useGeneratedKeys="true" keyProperty="tranSeq">
+			/* nftTrIns :: nft 컨트랙션 트랜잭션 등록 */
+			INSERT INTO TB_CONTRACT_TXN SET
+			tranSeq = #{tranSeq}
+			, conSeq = #{conSeq}
+			, uuidTxn = #{uuid}
+			, idx = #{idx}
+			, transType = #{type}
+			, txid = #{txid}
+			, fromAdd = #{fromAddress}
+			, toAdd = #{toAddress}
+			, amount = #{amount}
+			, usedFee = #{usedFee}
+			, blockHeight = #{blockHeight}
+			, statusTxn = #{status}
+			, outputIndex = #{outputIndex}
+			, createdDate = #{createdDate}
+			, modifiedDate = #{modifiedDate}
+			, finalizedDate = #{finalizedDate}
+	</insert>
+	
+</mapper>

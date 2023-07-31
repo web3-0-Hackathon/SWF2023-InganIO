@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inganio.demo.User.Mapper.UserMapper">
+
+<!-- 	<select id="userList" parameterType="cMap">
+		/* userList ::  사용자 정보 조회 */
+		SELECT *
+		FROM tb_brd
+		WHERE TITLE  = #{title}
+	</select> -->
+ 
+	<select id="userList" resultType="hashMap" parameterType="String">
+		SELECT m.*, t.*
+		FROM tb_mem m
+		LEFT JOIN tb_brd t  on m.ID = t.REG_ID 
+		WHERE pass = #{pass}
+	</select> 
+	
+	<select id="test" resultType="hashMap" parameterType="hashMap">
+		SELECT *
+		FROM TB_HOST 
+		WHERE hostId = #{id}
+	</select>
+	
+	<select id="getHostInfo" resultType="hashMap">
+		/* 호스트 정보 조회 */
+		SELECT *
+		FROM TB_HOST
+		WHERE hostId = 1
+	</select>
+	
+	<select id="getUserInfo" resultType="hashMap">
+		/* 사용자 정보 조회 */
+		SELECT *
+		FROM TB_USER
+		WHERE userId = 1
+	</select>
+	
+	
+	
+</mapper>
