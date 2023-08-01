@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SuggestPriceActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_close"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/iv_title_price_suggestion"
+        android:layout_width="280dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_title_price_suggestion"
+        app:layout_constraintTop_toBottomOf="@id/tool_bar"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_initial_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시작가 : ETH 0.002"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@id/iv_title_price_suggestion"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_list_and_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_initial_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title_suggested_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="신청내역 "
+            android:textSize="11sp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_suggested_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textSize="11sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_title_suggested_count" />
+
+        <TextView
+            android:id="@+id/tv_suggested_count_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="건"
+            android:textSize="11sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_suggested_count" />
+
+        <ImageView
+            android:id="@+id/iv_high_price_order"
+            android:layout_width="80dp"
+            android:layout_height="13dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_high_price_order"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_price_suggestion"
+        android:layout_width="365dp"
+        android:layout_height="153dp"
+        android:background="@drawable/dialog_background"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_list_and_order"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_my_page_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/layout_user_and_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="15dp"
+                app:layout_constraintTop_toTopOf="@id/iv_profile"
+                app:layout_constraintStart_toEndOf="@id/iv_profile"
+                app:layout_constraintBottom_toTopOf="@id/layout_price">
+
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="고슴도치"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text=" | "
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="2023. 08. 02"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="15dp"
+                app:layout_constraintTop_toBottomOf="@id/layout_user_and_date"
+                app:layout_constraintStart_toEndOf="@id/iv_profile"
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile">
+
+                <TextView
+                    android:id="@+id/tv_eth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ETH"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text=" 0.042"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                app:strokeColor="@color/color_main"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <com.skydoves.elasticviews.ElasticButton
+                    android:id="@+id/btn_accept"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/non_round_main_bottom_corner_background"
+                    android:text="수락하기"
+                    android:textColor="@color/color_main"
+                    android:textStyle="bold"
+                    app:imageView_duration="100" />
+
+                <com.skydoves.elasticviews.ElasticButton
+                    android:id="@+id/btn_reject"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/non_round_main_bottom_corner_background"
+                    android:text="거절하기"
+                    android:textColor="#C1C1C1"
+                    android:textStyle="bold"
+                    app:imageView_duration="100" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/iv_koala_suggestion"
+        android:layout_width="380dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_price_suggestion01"
+        app:layout_constraintTop_toBottomOf="@id/cv_price_suggestion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_lion_suggestion"
+        android:layout_width="380dp"
+        android:layout_height="160dp"
+        android:src="@drawable/ic_price_suggestion02"
+        app:layout_constraintTop_toBottomOf="@id/iv_koala_suggestion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
