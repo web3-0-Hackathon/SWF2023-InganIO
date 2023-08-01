@@ -2,9 +2,10 @@ package web3_hackathon.humanio
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
 import web3_hackathon.humanio.databinding.ActivityEventDetail01Binding
 
-
+@AndroidEntryPoint
 class EventDetail01Activity : AppCompatActivity() {
     private lateinit var binding: ActivityEventDetail01Binding
 
