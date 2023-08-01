@@ -7,7 +7,6 @@
     <application
         android:name=".HumanIOApp"
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -15,17 +14,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-        <activity android:name=".RegistrationTicketActivity"
+        <activity
+            android:name=".QRCodeActivity"
             android:exported="false" />
-        <activity android:name=".SuggestPriceActivity"
+        <activity
+            android:name=".RegistrationTicketActivity"
             android:exported="false" />
-        <activity android:name=".EventDetail02Activity"
+        <activity
+            android:name=".SuggestPriceActivity"
             android:exported="false" />
-        <activity android:name=".EventDetail01Activity"
+        <activity
+            android:name=".EventDetail02Activity"
             android:exported="false" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".EventDetail01Activity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

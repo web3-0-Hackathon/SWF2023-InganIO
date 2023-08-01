@@ -14,6 +14,6 @@ interface GetNftContractItemInfoApi {
 }
 
 data class ContractItemInfoResponse(
-    @SerializedName("contractAddress") val contractAddress: String,
-    @SerializedName("tokenId") val tokenId: String
+    @SerializedName("tokenId") val tokenId: String,
+    @SerializedName("contractAddress") val contractAddress: String
 )
