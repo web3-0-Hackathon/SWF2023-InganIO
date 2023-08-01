@@ -30,7 +30,7 @@ public interface UserMapper {
 	public int childAddress(Map<String, Object> userMap) throws SQLException;
 
 	//nft 컨트랙트 아이템 정보 조회
-	public HashMap<String, String> nftContractItemInfo(HashMap<String, String> paramMap) throws SQLException;
+	public HashMap<String, String> nftContractItemInfo(HashMap<String, String> paramMap);
 
 	public List<HashMap<String, String>> getEventInfo() throws SQLException;
 

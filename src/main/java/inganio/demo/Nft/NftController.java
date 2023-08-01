@@ -3,6 +3,7 @@ package inganio.demo.Nft;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
@@ -40,8 +41,8 @@ public class NftController {
 	**************************************************/
 //	@GetMapping({"/contractInfo/{uuid}"})
 //	@PathVariable("uuid") String uuid
-	public int nftContractInfo(String uuid) throws SQLException, IOException {
-//		Map<String, Object> rst = new HashMap<>();
+	public HashMap<String, String> nftContractInfo(String uuid) throws SQLException, IOException {
+		HashMap<String, String> rstMap = null;
 		int status = commonUtil.StatusCode.INTERNAL_SERVER_ERROR;
 		try {
 			OkHttpClient client = new OkHttpClient();
@@ -55,9 +56,9 @@ public class NftController {
 
 			Response response = client.newCall(request).execute();
 			
-			// 컨트랙트 정보 조회 등록 서비스
-			boolean rst = nftService.contractInfoIns(response);
-			if (rst) status = commonUtil.StatusCode.OK;
+			// 컨트랙트 정보 조회 등록 후 컨트랙트 주소와 고유 인덱스 map에 저장
+			rstMap = nftService.contractInfoIns(response);
+			System.out.println("컨트랙트 정보 조회 후 컨트랙트 주소, 고유값 조회 맵----"+ rstMap);
 			// 테스트 출력문
 //			rst.put("rst",response.body().string());
 			
@@ -65,9 +66,7 @@ public class NftController {
 			System.out.println(e.toString());
 		}
 		
-//		JSONObject json = new JSONObject(rst);
-		
-		return status;
+		return rstMap;
 	}
 	
 	/**************************************************
@@ -77,23 +76,43 @@ public class NftController {
 	* @Author : se-in shin
 	**************************************************/
 	@PostMapping({"/nftContractOffer"})
-	public int nftContractOffer(@RequestBody HashMap<String, String> paramMap) throws SQLException{
+	public HashMap<String, String> nftContractOffer(@RequestBody HashMap<String, String> paramMap) throws SQLException{
 		//System.out.println(paramMap);
 		//행사 정보
-		int status = commonUtil.StatusCode.INTERNAL_SERVER_ERROR;
+		HashMap<String, String> rstMap = null;
 		String uuid = null;
 		
 		try {
 			//컨트랙트 배포 신청한 후 트랜잭션 uuid 값으로 컨트랙트 배포 정보 조회로 이동
 			uuid = nftService.contractOfferIns(paramMap);
-			status = nftContractInfo(uuid);
+			rstMap = nftContractInfo(uuid);
+			
+			//조회 완료 후 컨트랙트 주소 조회
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.debug("error:" + e);
 		}
-		return status;
+		return rstMap;
 	}
 	
+	
+	/**************************************************
+	* @MethodName : nftItem
+	* @Description: NFT 아이템 발행
+	* @return : String
+	 * @throws ParseException 
+	 * @throws SQLException 
+	 * @throws IOException 
+	* @Author : se-in shin
+	**************************************************/
+	public HashMap<String, String> nftItemOffer(@RequestBody HashMap<String, String> paramMap) throws IOException, SQLException, ParseException {
+		HashMap<String, String> rstMap = new HashMap();
+		rstMap.put("status", "500");
+		String status = nftService.nftItemOffer(paramMap);
+		rstMap.put("status", status);
+		return rstMap;
+	}
 	
 }
 
