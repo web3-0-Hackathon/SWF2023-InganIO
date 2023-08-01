@@ -28,6 +28,7 @@ public class UserService {
 	
 	@Autowired
 	private UserMapper userMapper;
+	private int tmp =100;
 	
 	/**************************************************
 	* @MethodName : userWithdrawals
@@ -40,16 +41,18 @@ public class UserService {
 		String uuid = null;
 		
 		// 부여받은 자식 주소 정보
-		String requestId = paramMap.get("requestId");
 		String amount = paramMap.get("amount");
 		String childAddress = paramMap.get("childAddress");
 		
 		//유저 1 정보 조회
 		Map<String, Object> userMap = userMapper.getUserInfo();
 //		String rsaKey = (String) userMap.get("rsaKey");
+		String requestId = (String) userMap.get("userNm"); 
+		requestId = requestId  + String.valueOf(tmp);
 		String apiToken =(String) userMap.get("apiToken");
 		String walletNum =(String) userMap.get("walletNum");
 		String userAddress = (String) userMap.get("userAddress");
+		String rsaKey = (String) userMap.get("rsaKey");
 		
 		userMap.put("childAddress", childAddress);
 		
@@ -66,7 +69,7 @@ public class UserService {
 		OkHttpClient client = new OkHttpClient();
 
 		MediaType mediaType = MediaType.parse("application/json");
-		RequestBody body = RequestBody.create(mediaType, "{\"symbol\":\"ETH\",\"requestId\":\""+requestId+"\",\"amount\":\""+amount+"\",\"senderAddress\":\""+userAddress+"\",\"receiverAddress\":\""+childAddress+"\"}");
+		RequestBody body = RequestBody.create(mediaType, "{\"symbol\":\"ETH\",\"requestId\":\""+requestId+"\",\"encryptedUserKey\":\""+rsaKey+"\",\"amount\":\""+amount+"\",\"senderAddress\":\""+userAddress+"\",\"receiverAddress\":\""+childAddress+"\"}");
 		Request request = new Request.Builder()
 		  .url("https://tetco-api.blockchainapi.io/2.0/wallets/"+walletNum+"/withdrawals")
 		  .post(body)
@@ -76,31 +79,56 @@ public class UserService {
 		  .build();
 
 		Response response = client.newCall(request).execute();	
-		uuid = response.body().toString();
+		ResponseBody responseBody = response.body();
 		
+		JSONParser paser = new JSONParser();
+        JSONObject tranInfo = (JSONObject) paser.parse(responseBody.string());
+		System.out.println(tranInfo);
+		System.out.println(commonUtil.getMapFromJsonObject(tranInfo).get("uuid"));
+		System.out.println("자식 주소 출금 신청 uuid="+tranInfo.get("uuid"));
+		tmp =tmp+1;
+		userMap.put("uuid", commonUtil.getMapFromJsonObject(tranInfo).get("uuid"));
 		
 		//출금 상태 조회 - 출금 신청 정보 조회 api
+		String tranStatus = getWithdrawals(userMap);
+		return tranStatus;
+	}
+	
+	
+	/**************************************************
+	* @MethodName : getWithdrawals
+	* @Description: 사용자 지갑 출금 신청 정보 조회
+	* @return getWithdrawals
+	* @throws ParseException 
+	* @Author : se-in shin
+	**************************************************/
+	public String getWithdrawals(Map<String, Object>  userMap) throws IOException, ParseException {
+		String uuid = (String) userMap.get("uuid");
+		String walletNum = (String) userMap.get("walletNum");
+		String apiToken = (String) userMap.get("apiToken");
+		System.out.println(userMap);
 		String tranStatus = null;
 		if(!uuid.isEmpty()) {
-			OkHttpClient client2 = new OkHttpClient();
+			OkHttpClient client = new OkHttpClient();
 
-			Request request2 = new Request.Builder()
+			Request request = new Request.Builder()
 			  .url("https://tetco-api.blockchainapi.io/2.0/wallets/"+walletNum+"/withdrawals/"+uuid)
 			  .get()
 			  .addHeader("accept", "application/json")
-			  .addHeader("Authorization", "Bearer ")
+			  .addHeader("Authorization", "Bearer "+ apiToken)
 			  .build();
 
-			Response response2 = client2.newCall(request2).execute();
-			ResponseBody responseBody = response2.body();
+			Response response = client.newCall(request).execute();
+			ResponseBody responseBody = response.body();
 			
 			JSONParser paser = new JSONParser();
 	        JSONObject tranInfo = (JSONObject) paser.parse(responseBody.string());
 	        
-	        tranStatus = (String) tranInfo.get("state");
+	        tranStatus = (String) tranInfo.get("status");
+	        System.out.println("tranInfo+"+tranInfo);
 	        System.out.println("트랜잭션 상태 ---- "+ tranStatus);
 		}
-		
+	
 		return tranStatus;
 	}
 	

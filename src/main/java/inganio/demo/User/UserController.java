@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import inganio.demo.Common.commonUtil;
 import inganio.demo.User.Mapper.UserMapper;
 import inganio.demo.User.Service.UserService;
 
@@ -82,24 +83,26 @@ public class UserController {
 	* @throws IOException 
 	* @Author : se-in shin
 	**************************************************/
+	@SuppressWarnings("null")
 	@PostMapping({"/userWithdrawals"})
-	public String userWithdrawals(@RequestBody HashMap<String, String> paramMap) throws IOException, SQLException, ParseException{
-		String tranStatus = null;
+	public Map<String, String> userWithdrawals(@RequestBody HashMap<String, String> paramMap) throws IOException, SQLException, ParseException{
+		String tranStatus = "";
 		try {
 			tranStatus = userService.userWithdrawals(paramMap);
+			// 출금이 완료되었다면 호스트 대표주소에서 유저에게 자식 주소 출금
+			if (tranStatus.equals("SENT")){
+				tranStatus = userService.NftWithdrawalsOffer(paramMap);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.debug("error:"+ e);
 		}
 		
-		// 출금이 완료되었다면 호스트 대표주소에서 유저에게 자식 주소 출금
-		if (tranStatus.equals("SENT")){
-			tranStatus = userService.NftWithdrawalsOffer(paramMap);
-			
-		}
+		Map<String, String> statusMap = null;
+		statusMap.put("statusCode", tranStatus);
 		
 		//아니면 에러코드 반환.
-		return tranStatus;
+		return statusMap;
 	} 
 	
 	
