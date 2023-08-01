@@ -30,15 +30,25 @@ object NetworkModule  {
 
     @Provides
     @Singleton
-    fun provideHumanIOApi(okHttpClient: OkHttpClient): Retrofit =
+    fun provideOctetApi(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(OCTET_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
 
+    @Provides
+    @Singleton
+    fun provideHumanIOApi(okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(DB_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
 
-    val BASE_URL = "https://octet-api.blockchainapi.io/2.0/"
+    val OCTET_BASE_URL = "https://octet-api.blockchainapi.io/2.0/"
+
+    val DB_BASE_URL = "http://27.96.134.31:8080/api/"
 
 //    companion object {
 //        const val BASE_URL = "https://octet-api.blockchainapi.io/2.0/"
