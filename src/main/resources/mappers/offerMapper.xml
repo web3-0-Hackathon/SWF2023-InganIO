@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inganio.demo.priceOffer.Mapper.OfferMapper">
+	<insert id="offerPriceIns" parameterType="hashMap" useGeneratedKeys="true" keyProperty="offerId">
+		/* 가격 제안 등록 */
+		INSERT INTO TB_OFFER SET
+			offerId = #{offerId}
+			,userId = 2
+			,eventId= #{eventId}
+			,conSeq = #{conSeq}
+			,offerPrice = #{offerPrice}
+	</insert>
+	
+	<select id="offerList" parameterType="String" resultType="hashMap">
+		/* 가격 제안 조회 */
+		SELECT offerPrice, regDt
+		FROM TB_OFFER
+		WHERE offerYn = 'N'
+	</select>
+</mapper>
