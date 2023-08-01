@@ -25,7 +25,7 @@
         <item name="errorIconDrawable">@android:color/transparent</item>
     </style>
 
-    <style name="HintTextAppearance">
+    <style name="HintTextAppearanceH">
         <!--        <item name="android:fontFamily">@font/noto_sans_kr_regular</item>-->
         <item name="android:textStyle">normal</item>
         <item name="android:includeFontPadding">false</item>
@@ -48,4 +48,9 @@
         <item name="android:background">@drawable/icon_unchecked</item>
     </style>
 
+
+    <style name="HintTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textSize">30px</item>
+        <item name="android:textColor">#171717</item>
+    </style>
 </resources>
