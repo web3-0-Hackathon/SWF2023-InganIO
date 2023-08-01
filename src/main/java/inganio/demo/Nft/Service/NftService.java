@@ -38,7 +38,7 @@ public class NftService {
 	* @MethodName : contractInfoIns
 	* @Description: NFT 컨트랙트 배포 조회 후 db 저장
 	* @return response
-	 * @throws org.json.simple.parser.ParseException 
+	* @throws org.json.simple.parser.ParseException 
 	* @Author : se-in shin
 	**************************************************/
 	@SuppressWarnings("unchecked")
@@ -70,10 +70,16 @@ public class NftService {
 		}
 		return rst2 > 0 ? true : false;
 	}
-
+	
+	/**************************************************
+	* @MethodName : contractOfferIns
+	* @Description: NFT 컨트랙트 배포 신청
+	* @return : String
+	* @Author : se-in shin
+	**************************************************/
 	public String contractOfferIns(HashMap<String, String> paramMap) throws IOException {
 		String eventNm = paramMap.get("eventNm");	//requestId, contractName
-		String symbol = paramMap.get("symbol");		// symbol, symbol
+		String symbol = paramMap.get("symbol");		// symbol, baseuri
 		
 		HashMap<String, Object> resultMap = null;
 		OkHttpClient client = new OkHttpClient();
@@ -83,7 +89,6 @@ public class NftService {
 		
 		Request request = new Request.Builder()
 		  .url("https://tetco-api.blockchainapi.io/2.0/wallets/1050/nfts/contracts/deployments")
-		  .post(body)
 		  .addHeader("accept", "application/json")
 		  .addHeader("Authorization", "Bearer "+ HOST_API_KEY)
 		  .addHeader("content-type", "application/json")
@@ -91,7 +96,7 @@ public class NftService {
 
 		Response response = client.newCall(request).execute();
 		String uuid = response.body().string();
-		System.out.println(uuid);
+		//System.out.println(uuid);
 //		JSONParser paser = new JSONParser();
 //        JSONObject uuid = (JSONObject) paser.parse(responseBody.string());
 		return uuid;

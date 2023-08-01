@@ -34,7 +34,7 @@ public class NftController {
 	
 	/**************************************************
 	* @MethodName : nftContractInfo
-	* @Description: NFT 컨트랙트 배포 조회 api
+	* @Description: NFT 컨트랙트 배포 조회
 	* @return : int
 	* @Author : se-in shin
 	**************************************************/
@@ -76,14 +76,15 @@ public class NftController {
 	* @return : int
 	* @Author : se-in shin
 	**************************************************/
-	@PostMapping({"/contractOffer"})
+	@PostMapping({"/nftContractOffer"})
 	public int nftContractOffer(@RequestBody HashMap<String, String> paramMap) throws SQLException{
-		System.out.println(paramMap);
+		//System.out.println(paramMap);
 		//행사 정보
 		int status = commonUtil.StatusCode.INTERNAL_SERVER_ERROR;
 		String uuid = null;
 		
 		try {
+			//컨트랙트 배포 신청한 후 트랜잭션 uuid 값으로 컨트랙트 배포 정보 조회로 이동
 			uuid = nftService.contractOfferIns(paramMap);
 			status = nftContractInfo(uuid);
 		} catch (Exception e) {
