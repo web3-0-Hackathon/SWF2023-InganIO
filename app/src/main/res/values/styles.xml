@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <!--FilledBox일 경우 밑줄 색상, OutlinedBox일 경우 테두리 색상-->
+        <item name="boxStrokeColor">@drawable/selector_text_input_color</item>
+        <!--Counter-->
+        <item name="counterTextAppearance">@style/CounterTextAppearance</item>
+        <!--EditText 에 있을 때의 Hint-->
+        <item name="android:textColorHint">#DDDDDD</item>
+        <!--상단에 있을 때의 Hint-->
+        <item name="hintTextColor">#DDDDDD</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+        <!--Helper-->
+        <item name="helperTextTextAppearance">@style/HelperTextAppearance</item>
+        <!--Error-->
+        <item name="errorIconDrawable">@android:color/transparent</item>
+    </style>
+
+    <style name="HintTextAppearance">
+        <!--        <item name="android:fontFamily">@font/noto_sans_kr_regular</item>-->
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="HelperTextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="CounterTextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="checkedButtonStyle">
+        <item name="android:background">@drawable/icon_unchecked</item>
+    </style>
+
+</resources>
