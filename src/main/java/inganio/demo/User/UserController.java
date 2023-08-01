@@ -80,9 +80,9 @@ public class UserController {
 	* @return List<Map<String, String>>
 	* @Author : se-in shin
 	**************************************************/
-	@GetMapping({"/getEventInfo"})
-	public List<HashMap<String, String>> getEventInfo() throws SQLException{
-		List<HashMap<String, String>> rstMap = userMapper.getEventInfo();
+	@GetMapping("/getEventInfo")
+	public HashMap<String, String> getEventInfo() throws SQLException{
+		HashMap<String, String> rstMap = userMapper.getEventInfo();
 		return rstMap;
 	}
 	

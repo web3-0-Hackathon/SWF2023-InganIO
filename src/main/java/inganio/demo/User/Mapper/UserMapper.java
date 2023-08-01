@@ -32,7 +32,7 @@ public interface UserMapper {
 	//nft 컨트랙트 아이템 정보 조회
 	public HashMap<String, String> nftContractItemInfo(HashMap<String, String> paramMap);
 
-	public List<HashMap<String, String>> getEventInfo() throws SQLException;
+	public HashMap<String, String> getEventInfo() throws SQLException;
 
 	
 	
