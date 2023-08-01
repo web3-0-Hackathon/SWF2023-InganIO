@@ -30,35 +30,11 @@
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF">
 
-                    <!-- '대표 이미지' 텍스트 -->
-                    <TextView
-                        android:id="@+id/ticket_image_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24px"
-                        android:layout_marginLeft="58px"
-                        android:text="대표 이미지"
-                        android:textColor="#171717"
-                        android:textSize="36px"
-                        android:textStyle="bold" />
-
-                    <!-- 카메라 아이콘 이미지뷰 -->
-                    <ImageView
-                        android:id="@+id/img_thumbnail"
-                        android:layout_width="174px"
-                        android:layout_height="174px"
-                        android:layout_marginTop="20px"
-                        android:layout_marginLeft="58px"
-                        android:layout_below="@id/ticket_image_text"
-                        android:src="@drawable/img_thumbnail" />
-
-
                     <!-- 제목 텍스트 -->
                     <TextView
                         android:id="@+id/ticket_title_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/img_thumbnail"
                         android:layout_marginTop="40px"
                         android:layout_marginLeft="58px"
                         android:text="행사 이름"
@@ -79,6 +55,7 @@
 
                         <!-- 힌트 '행사 이름을 입력해주세요.' -->
                         <EditText
+                            android:id="@+id/eventNm"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
@@ -115,6 +92,7 @@
 
                     <!-- 힌트 '행사 장소를 입력해주세요.' -->
                     <EditText
+                        android:id="@+id/eventLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -125,82 +103,96 @@
 
                 </androidx.cardview.widget.CardView>
 
-                    <!-- 행사 일정 텍스트 -->
-                    <TextView
-                        android:id="@+id/event_date_text"
-                        android:layout_width="wrap_content"
+                <!-- 행사 일정 텍스트 -->
+                <TextView
+                    android:id="@+id/event_date_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/place_box"
+                    android:layout_marginTop="40px"
+                    android:layout_marginLeft="58px"
+                    android:text="행사 일정"
+                    android:textColor="#171717"
+                    android:textSize="36px"
+                    android:textStyle="bold"/>
+
+                <!-- 행사 일정 박스 -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/event_date_box"
+                    android:layout_width="964px"
+                    android:layout_height="110px"
+                    android:layout_below="@id/event_date_text"
+                    android:layout_marginTop="20px"
+                    android:layout_marginLeft="58px"
+                    app:cardCornerRadius="20px"
+                    app:cardBackgroundColor="#F3F3F3">
+
+                    <!-- 힌트 '행사 장소를 입력해주세요.' -->
+                    <EditText
+                        android:id="@+id/selectedEventDate"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/place_box"
-                        android:layout_marginTop="40px"
-                        android:layout_marginLeft="58px"
-                        android:text="행사 일정"
-                        android:textColor="#171717"
-                        android:textSize="36px"
-                        android:textStyle="bold"/>
+                        android:padding="10dp"
+                        android:background="@null"
+                        android:focusable="false"
+                        android:hint="   행사 날짜와 시간을 선택해주세요"
+                        android:textColorHint="#C1C1C1"
+                        android:textAppearance="@style/HintTextAppearance"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/evenet_date_box"
-                        android:layout_width="964px"
-                        android:layout_height="220px"
-                        android:layout_below="@id/event_date_text"
-                        android:layout_marginTop="20px"
-                        android:layout_marginLeft="58px"
-                        app:cardCornerRadius="20px"
-                        app:cardBackgroundColor="#F3F3F3">
+                </androidx.cardview.widget.CardView>
 
-                        <!-- 레이아웃 가로 배치 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="25dp">
+                <!-- 대표 이미지 URL 텍스트 -->
+                <TextView
+                    android:id="@+id/img_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/event_date_box"
+                    android:layout_marginTop="40px"
+                    android:layout_marginLeft="58px"
+                    android:text="대표 이미지 URL"
+                    android:textColor="#171717"
+                    android:textSize="36px"
+                    android:textStyle="bold"/>
 
-                            <!-- 왼쪽 선택한 날짜와 시간 표시 -->
-                            <EditText
-                                android:id="@+id/selectedEventDateStart"
-                                android:layout_width="290dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:focusable="false"
-                                android:hint="행사 시작 날짜와 시간을\n 선택해주세요"
-                                android:textColorHint="#171717"
-                                android:textColor="#171717"
-                                android:textAppearance="@style/HintTextAppearance"
-                                android:gravity="center"/>
+                <!-- ? 아이콘 -->
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:layout_marginLeft="320px"
+                    android:layout_marginTop="49px"
+                    android:layout_below="@id/event_date_box"
+                    android:src="@drawable/icon_ww"/>
 
-                            <!-- 오른쪽 화살표 이미지 표시 -->
-                            <ImageView
-                                android:layout_width="19dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center_vertical"
-                                android:src="@drawable/icon_arrow_narrow_left"
-                                android:gravity="center"/>
+                <!-- 제목 입력 박스 -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/img_text_box"
+                    android:layout_width="964px"
+                    android:layout_height="110px"
+                    android:layout_below="@id/img_text"
+                    android:layout_marginTop="20px"
+                    android:layout_marginLeft="58px"
+                    app:cardCornerRadius="20px"
+                    app:cardBackgroundColor="#F3F3F3">
 
-                            <!-- 오른쪽 선택한 날짜와 시간 표시 -->
-                            <EditText
-                                android:id="@+id/selectedEventDateFinish"
-                                android:layout_width="290dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:focusable="false"
-                                android:hint="행사 종료 날짜와 시간을\n 선택해주세요"
-                                android:textColorHint="#171717"
-                                android:textColor="#171717"
-                                android:textAppearance="@style/HintTextAppearance"
-                                android:gravity="center"/>
+                    <!-- 힌트 '행사 장소를 입력해주세요.' -->
+                    <EditText
+                        android:id="@+id/tokenUri"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:background="@null"
+                        android:hint="   IPFS 주소를 입력하세요"
+                        android:textColorHint="#C1C1C1"
+                        android:textAppearance="@style/HintTextAppearance"/>
 
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                     <!-- 회색 선 -->
                     <ImageView
                         android:id="@+id/line1"
                         android:layout_width="match_parent"
                         android:layout_height="2px"
-                        android:layout_below="@id/evenet_date_box"
+                        android:layout_below="@id/img_text_box"
                         android:layout_marginTop="40dp"
                         android:src="@drawable/line1"/>
 
@@ -230,6 +222,7 @@
 
                         <!-- 힌트 'KRW 가격을 입력해주세요' -->
                         <EditText
+                            android:id="@+id/startPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
@@ -300,6 +293,7 @@
 
                         <!-- 힌트 '발행 수량을 입력해주세요' -->
                         <EditText
+                            android:id="@+id/amount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
@@ -425,6 +419,7 @@
 
                     <!-- 힌트 '영문 대문자로 입력해주세요(10자 이하)' -->
                     <EditText
+                        android:id="@+id/symbol"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -469,6 +464,7 @@
 
                     <!-- 힌트 '숫자로 입력해주세요' -->
                     <EditText
+                        android:id="@+id/tokenId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"

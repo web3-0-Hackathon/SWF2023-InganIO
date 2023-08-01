@@ -1,15 +1,11 @@
 package web3_hackathon.humanio.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class GetNftContractDeploymentInfoResponse(
-    val nft: GetNftContractResponse,
-    val nftTransaction: Transaction,
-    val fee: Fee,
-    val uuid: String,
-    val status: String,
-    val createdDate: String,
-    val modifiedDate: String,
-    val errorCode: String,
-    val errorMessage: String
+    @SerializedName("conSeq") val conSeq: String,
+    @SerializedName("contractAddress") val contractAddress: String,
+    @SerializedName("statusCode") val statusCode: String
 )
 
 data class Fee(

@@ -53,16 +53,14 @@ interface NftApi {
     ): Call<List<GetNftContractResponse>>
 
     // NFT 컨트랙트 배포 신청 / 정상적으로 신청 완료 시 배포 트랜잭션의 uuid를 반환.
-    @POST("wallets/{walletIdx}/nfts/contracts/deployments")
+    @POST("octet/nftContractOffer")
     fun deployNftContract(
-        @Path("walletIdx") walletIdx: Int,
         @Body deployNftContractRequest: DeployNftContractRequest
     ): Call<DeployNftContractResponse>
 
     // NFT 컨트랙트 배포 신청 정보 조회
-    @GET("wallets/{walletIdx}/nfts/contracts/deployments/{uuid}")
+    @GET("/api/octet/contractInfo/{uuid}")
     fun getNftContractDeploymentInfo(
-        @Path("walletIdx") walletIdx: Int,
         @Path("uuid") uuid: String
     ): Call<GetNftContractDeploymentInfoResponse>
 
