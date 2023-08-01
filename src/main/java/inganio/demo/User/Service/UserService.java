@@ -149,7 +149,7 @@ public class UserService {
 		
 		
 		String status = "";
-		//uuid값이 발행되면 nft 출금 신청 정보 조회 후 디비 등록
+		//uuid 값이 발행되면 nft 출금 신청 정보 조회 후 디비 등록
 		if (!uuid.isEmpty()){
 			OkHttpClient client2 = new OkHttpClient();
 

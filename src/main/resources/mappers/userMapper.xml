@@ -44,5 +44,13 @@
 		,address = #{childAddress}
 	</insert> 
 	
+	<select id="nftContractItemInfo" parameterType="hashMap" resultType="hashMap">
+		/* 호스트가 등록한 nft 컨트랙트 주소와 아이템의 토큰 아이디 조회 */
+		SELECT TC.hostId, TN.tokenId
+		FROM TB_CONTRACT TC
+		LEFT JOIN TB_NFT TN ON TC.conSeq = TC.conSeq
+		WHERE TC.hostId = #{hostId} and TN.tokenId = #{tokenId} 
+	</select>
+	
 	
 </mapper>

@@ -92,15 +92,35 @@ public class UserController {
 			logger.debug("error:"+ e);
 		}
 		
-		// 출금이 완료되었다면 nft 출금 신청
+		// 출금이 완료되었다면 호스트 대표주소에서 유저에게 자식 주소 출금
 		if (tranStatus.equals("SENT")){
 			tranStatus = userService.NftWithdrawalsOffer(paramMap);
+			
 		}
 		
 		//아니면 에러코드 반환.
 		return tranStatus;
 	} 
 	
+	
+	/**************************************************
+	* @MethodName : nftContractItemInfo
+	* @Description: 호스트의 컨트랙트주소와 아이템의 토큰 아이디 조회 (로그인이 없으므로 유저 행사 모두 1로 받음)
+	* @return HashMap
+	* @Author : se-in shin
+	**************************************************/
+	@GetMapping("/nftContractItemInfo")
+	public HashMap<String, String> nftContractItemInfo(@RequestParam HashMap<String, String> paramMap) {
+		HashMap<String, String> rstMap = null;
+		
+		String hostId = (String) paramMap.get("hostId");
+		String eventId = (String) paramMap.get("eventId");
+//		String tokenId = (String) paramMap.get("tokenId");
+		
+		rstMap = userMapper.nftContractItemInfo(paramMap);
+		
+		return rstMap;
+	}
 
 	 
 }

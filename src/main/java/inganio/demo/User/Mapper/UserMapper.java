@@ -29,6 +29,9 @@ public interface UserMapper {
 	//사용자 자식주소 저장
 	public int childAddress(Map<String, Object> userMap) throws SQLException;
 
+	//nft 컨트랙트 아이템 정보 조회
+	public HashMap<String, String> nftContractItemInfo(HashMap<String, String> paramMap);
+
 	
 	
 
