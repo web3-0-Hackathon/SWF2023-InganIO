@@ -36,6 +36,13 @@
 		WHERE userId = 1
 	</select>
 	
+	<insert id="childAddress" parameterType="hashMap" useGeneratedKeys="true" keyProperty="seq">
+		/* 사용자1 - 자식 주소 생성 */
+		INSERT INTO TB_USER_CHILD SET
+		idx = #{seq}
+		,userId = #{userId}
+		,address = #{childAddress}
+	</insert> 
 	
 	
 </mapper>
