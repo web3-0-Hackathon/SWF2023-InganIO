@@ -46,6 +46,8 @@ object NetworkModule  {
             .client(okHttpClient)
             .build()
 
+
+
     val OCTET_BASE_URL = "https://octet-api.blockchainapi.io/2.0/"
 
     val DB_BASE_URL = "http://27.96.134.31:8080/api/"
