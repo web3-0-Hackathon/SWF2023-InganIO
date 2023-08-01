@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import inganio.demo.Common.commonUtil;
 import inganio.demo.User.Mapper.UserMapper;
 import inganio.demo.User.Service.UserService;
 
@@ -73,6 +72,20 @@ public class UserController {
 		Map<String, Object> userInfo = userMapper.getUserInfo();
 		return userInfo;
 	}  
+	
+	
+	/**************************************************
+	* @MethodName : getEventInfo
+	* @Description: 행사 정보 조회
+	* @return List<Map<String, String>>
+	* @Author : se-in shin
+	**************************************************/
+	@GetMapping({"/getEventInfo"})
+	public List<HashMap<String, String>> getEventInfo() throws SQLException{
+		List<HashMap<String, String>> rstMap = userMapper.getEventInfo();
+		return rstMap;
+	}
+	
 	
 	/**************************************************
 	* @MethodName : userWithdrawals
