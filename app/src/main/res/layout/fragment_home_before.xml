@@ -41,6 +41,14 @@
 
             </androidx.appcompat.widget.Toolbar>
 
+            <ImageView
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/background_translucent"
+                android:background="@drawable/semi_transparent"
+                android:visibility="gone" />
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,18 +59,18 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/img_main_thumb"
+                        android:id="@+id/img_main_thumb_before"
                         android:layout_width="1080px"
                         android:layout_height="1100px"
                         android:layout_alignParentTop="true"
-                        android:src="@drawable/img_main_thumb"
+                        android:src="@drawable/img_main_thumb_before"
                         android:scaleType="fitStart" />
 
                     <ImageView
                         android:id="@+id/img_home_cate"
                         android:layout_width="1080px"
                         android:layout_height="130px"
-                        android:layout_below="@id/img_main_thumb"
+                        android:layout_below="@id/img_main_thumb_before"
                         android:src="@drawable/img_home_cate"
                         android:scaleType = "fitXY"/>
 
@@ -70,7 +78,7 @@
                         android:id="@+id/cate1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/img_main_thumb"
+                        android:layout_below="@id/img_main_thumb_before"
                         android:layout_marginLeft="102px"
                         android:layout_marginTop="10dp"
                         android:text="전시/행사"
@@ -83,7 +91,7 @@
                         android:id="@+id/cate2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/img_main_thumb"
+                        android:layout_below="@id/img_main_thumb_before"
                         android:layout_marginLeft="493px"
                         android:layout_marginTop="10dp"
                         android:text="북토크"
@@ -96,7 +104,7 @@
                         android:id="@+id/cate3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/img_main_thumb"
+                        android:layout_below="@id/img_main_thumb_before"
                         android:layout_marginLeft="853px"
                         android:layout_marginTop="10dp"
                         android:text="팬미팅"
@@ -139,8 +147,8 @@
                         android:scaleType="fitCenter"
                         android:src="@drawable/img_home_card2" />
 
-                    </RelativeLayout>
-                </ScrollView>
+                </RelativeLayout>
+            </ScrollView>
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -163,7 +171,9 @@
             android:layout_gravity="end|bottom"
             android:layout_marginLeft="618px"
             android:layout_marginBottom="85dp"
-            android:src="@drawable/icon_ticket" />
+            android:src="@drawable/icon_ticket"
+            android:visibility="gone"
+            />
     </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
