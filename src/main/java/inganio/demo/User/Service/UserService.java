@@ -106,7 +106,7 @@ public class UserService {
 	
 	/**************************************************
 	* @MethodName : NftWithdrawalsOffer
-	* @Description: 사용자가 호스트에게 NFT 출금 신청 후 트랜잭션 등록
+	* @Description: 사용자가 호스트에게 NFT 출금 신청 후 트랜잭션 등록 -> 호스투가 출금 신청을 해야 함
 	* @return String
 	* @throws IOException 
 	* @throws SQLException 
@@ -116,22 +116,25 @@ public class UserService {
 	public String NftWithdrawalsOffer(HashMap<String, String> paramMap) throws IOException, SQLException, ParseException {
 		// 프론트에서 넘겨준 유저 + 행사 정보
 		String requestId = paramMap.get("requestId");
-		String amount = paramMap.get("amount");
-		String childAddress = paramMap.get("childAddress");
+		String tokenId = paramMap.get("tokenId");
 		String contractAddress = paramMap.get("contractAddress");
 				
-		//유저 1 정보 조회
+		//host 정보 조회
+		Map<String, Object> hostMap = userMapper.getHostInfo();
+		String rsaKey = (String) hostMap.get("rsaKey");
+		String apiToken =(String) hostMap.get("apiToken");
+		String walletNum =(String) hostMap.get("walletNum");
+		String hostAddress = (String) hostMap.get("hostAddress");
+		
+		//사용자 주소 조회 -  nft 받는 주소
 		Map<String, Object> userMap = userMapper.getUserInfo();
-		String rsaKey = (String) userMap.get("rsaKey");
-		String apiToken =(String) userMap.get("apiToken");
-		String walletNum =(String) userMap.get("walletNum");
 		String userAddress = (String) userMap.get("userAddress");
 		
 		//nft 출금 신청
 		OkHttpClient client = new OkHttpClient();
 
 		MediaType mediaType = MediaType.parse("application/json");
-		RequestBody body = RequestBody.create(mediaType, "{\"requestId\":\""+requestId+"\",\"encryptedUserKey\":\""+rsaKey+"\",\"contractAddress\":\""+contractAddress+"\",\"tokenId\":\""+requestId+"\",\"receiverAddress\":\""+childAddress+"\",\"amount\":1,\"gasPrice\":\""+amount+"}");
+		RequestBody body = RequestBody.create(mediaType, "{\"requestId\":\""+requestId+"\",\"encryptedUserKey\":\""+rsaKey+"\",\"contractAddress\":\""+contractAddress+"\",\"tokenId\":\""+tokenId+"\",\"receiverAddress\":\""+userAddress+"\",\"amount\":1}");
 		Request request = new Request.Builder()
 		  .url("https://tetco-api.blockchainapi.io/2.0/wallets/"+walletNum+"/nfts/main-address/withdrawals")
 		  .post(body)
