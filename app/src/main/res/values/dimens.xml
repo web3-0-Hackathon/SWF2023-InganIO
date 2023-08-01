@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="buy_ticket_dialog_radius">12dp</dimen>
+    <dimen name="buy_ticket_dialog_stroke_width">1dp</dimen>
+
+    <dimen name="bottom_sheet_radius">12dp</dimen>
+</resources>
