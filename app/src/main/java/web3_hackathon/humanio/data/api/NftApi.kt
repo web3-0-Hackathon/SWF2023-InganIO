@@ -13,7 +13,7 @@ import web3_hackathon.humanio.data.model.GetNftContractDeploymentInfoResponse
 import web3_hackathon.humanio.data.model.GetNftContractResponse
 import web3_hackathon.humanio.data.model.GetNftItemInfoResponse
 import web3_hackathon.humanio.data.model.GetNftTransactionInfoResponse
-import web3_hackathon.humanio.data.model.RequestCreateNftItem
+import web3_hackathon.humanio.data.model.CreateNftItemRequest
 
 interface NftApi {
 
@@ -21,7 +21,7 @@ interface NftApi {
     @POST("wallets/{walletIdx}/nfts/items/creations")
     fun createNftItem(
         @Path("walletIdx") walletIdx: Int,
-        @Body requestCreateNftItem: RequestCreateNftItem
+        @Body createNftItemRequest: CreateNftItemRequest
     ): Call<CreateNftItemResponse>
 
     // 발행 신청한 NFT 아이템 정보를 조회
