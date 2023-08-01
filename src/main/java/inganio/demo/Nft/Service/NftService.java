@@ -43,13 +43,13 @@ public class NftService {
 	/**************************************************
 	* @MethodName : contractInfoIns
 	* @Description: NFT 컨트랙트 배포 조회 후 db 저장
-	* @return response
+	* @return String
 	* @throws org.json.simple.parser.ParseException 
 	* @Author : se-in shin
 	**************************************************/
 	@SuppressWarnings("unchecked")
 	public HashMap<String, String> contractInfoIns(Response response) throws IOException, ParseException, org.json.simple.parser.ParseException {
-        HashMap<String, String> rstMap = null;
+        HashMap<String, String> rstMap = new HashMap<String, String>();
 		
 		ResponseBody responseBody = response.body();
         int rst = 0;
@@ -57,39 +57,44 @@ public class NftService {
         
         JSONParser paser = new JSONParser();
         JSONObject obj = (JSONObject) paser.parse(responseBody.string());
-		HashMap<String, String> nftMap = (HashMap<String, String>) commonUtil.getMapFromJsonObject(obj).get("nft");
-		HashMap<String, String> nftTrMap = (HashMap<String, String>) commonUtil.getMapFromJsonObject(obj).get("nftTransaction");
-//        System.out.println("xml="+ ((HashMap<?, ?>) commonUtil.getMapFromJsonObject(obj).get("nft")).get("nameKo"));
+        
+        String status = (String) commonUtil.getMapFromJsonObject(obj).get("status");
+        System.out.println("status:::"+status);
+        if(status.equals("SENT")) {
+        	HashMap<String, String> nftMap = (HashMap<String, String>) commonUtil.getMapFromJsonObject(obj).get("nft");
+    		HashMap<String, String> nftTrMap = (HashMap<String, String>) commonUtil.getMapFromJsonObject(obj).get("nftTransaction");
+//            System.out.println("xml="+ ((HashMap<?, ?>) commonUtil.getMapFromJsonObject(obj).get("nft")).get("nameKo"));
+    		
+    		String contractAddress = nftMap.get("contractAddress");
+    		rstMap.put("contractAddress", contractAddress);
+    	
+    		//아이템 등록 시 저장하기 위한 컨트랙트 고유 인덱스
+    		String conSeq = "";
+    		try {
+    			//nft 컨트랙트 저장
+				rst = nftMapper.nftContractIns(nftMap);
+				conSeq = String.valueOf(nftMap.get("conSeq"));
+				rstMap.put("conSeq", conSeq);
 		
-		String contractAddress = nftMap.get("contractAddress");
-		rstMap.put("contractAddress", contractAddress);
-		
-		//아이템 등록 시 저장하기 위한 컨트랙트 고유 인덱스
-		String conSeq = "";
-		try {
-			//nft 컨트랙트 저장
-			rst = nftMapper.nftContractIns(nftMap);
-			
-			conSeq = String.valueOf(nftMap.get("conSeq"));
-			rstMap.put("conSeq", conSeq);
-			
-			if (rst>0) {
-				nftTrMap.put("conSeq", conSeq);
-				//nft 트랜잭션 저장
-				rst2 = nftMapper.nftTrIns(nftTrMap);
-			}else{
-				logger.debug("nft 컨트랙트 -- nftContractIns 저장 에러  --");
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			logger.debug("error:"+e);
-		}
-		
-		if (!conSeq.isEmpty()) {
-			System.out.println("컨트랙트 고유 인덱스 조회 에러");
-		}
-		return rstMap;
+    			if (rst>0) {
+    				nftTrMap.put("conSeq", conSeq);
+    				// nft 트랜잭션 저장
+    				rst2 = nftMapper.nftTrIns(nftTrMap);
+    			}else{
+    				logger.debug("nft 컨트랙트 -- nftContractIns 저장 에러  --");
+    			}
+    			
+    		} catch (Exception e) {
+    			// TODO: handle exception
+    			logger.debug("error:"+e);
+    		}
+    		
+    		rstMap.put("statusCode", "SENT");
+        }else {
+        	rstMap.put("statusCode", "AWAITING_WITHDRAWAL");
+        }
+		System.out.println("결과::: "+ rstMap);
+		return  rstMap;
 	}
 	
 	/**************************************************
@@ -97,9 +102,10 @@ public class NftService {
 	* @Description: NFT 컨트랙트 배포 신청
 	* @return : String
 	 * @throws SQLException 
+	 * @throws org.json.simple.parser.ParseException 
 	* @Author : se-in shin
 	**************************************************/
-	public String contractOfferIns(HashMap<String, String> paramMap) throws IOException, SQLException {
+	public String contractOfferIns(HashMap<String, String> paramMap) throws IOException, SQLException, org.json.simple.parser.ParseException {
 		String eventNm = paramMap.get("eventNm");	//requestId, contractName
 		String symbol = paramMap.get("symbol");		// symbol, baseuri
 		
@@ -112,9 +118,11 @@ public class NftService {
 //		String endDate = paramMap.get("endDate");
 //		
 		int eventRst = nftMapper.eventIns(paramMap);
-		
+		System.out.println(paramMap+"----------paramMAp");
 		// 컨트랙트 배포 신청
-		HashMap<String, Object> resultMap = null;
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		
 		OkHttpClient client = new OkHttpClient();
 
 		MediaType mediaType = MediaType.parse("application/json");
@@ -122,13 +130,20 @@ public class NftService {
 		
 		Request request = new Request.Builder()
 		  .url("https://tetco-api.blockchainapi.io/2.0/wallets/1050/nfts/contracts/deployments")
+		  .post(body)
 		  .addHeader("accept", "application/json")
 		  .addHeader("Authorization", "Bearer "+ HOST_API_KEY)
 		  .addHeader("content-type", "application/json")
 		  .build();
 
 		Response response = client.newCall(request).execute();
-		String uuid = response.body().string();
+		ResponseBody responseBody = response.body();
+		
+		JSONParser paser = new JSONParser();
+        JSONObject nftInfo = (JSONObject) paser.parse(responseBody.string());
+        System.out.println(nftInfo+"---------nftInfo");
+        String uuid = (String) nftInfo.get("uuid");
+        
 		System.out.println("contractOfferIns 컨트랙트 배포 신청 후 uuid : "+uuid);
 		return uuid;
 	}

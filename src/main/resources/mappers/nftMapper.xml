@@ -6,6 +6,7 @@
 			/* nftContractIns :: nft 컨트랙션 등록 */
 			INSERT INTO TB_CONTRACT SET
 			conSeq = #{conSeq}
+			,eventId = 1
 			,hostId = 1
 			, symbol = #{symbol}
 			, nameKo = #{nameKo}

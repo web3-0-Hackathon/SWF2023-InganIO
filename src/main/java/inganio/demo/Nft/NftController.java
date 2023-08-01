@@ -3,18 +3,18 @@ package inganio.demo.Nft;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import inganio.demo.Common.commonUtil;
 import inganio.demo.Nft.Service.NftService;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -39,11 +39,9 @@ public class NftController {
 	* @return : int
 	* @Author : se-in shin
 	**************************************************/
-//	@GetMapping({"/contractInfo/{uuid}"})
-//	@PathVariable("uuid") String uuid
-	public HashMap<String, String> nftContractInfo(String uuid) throws SQLException, IOException {
-		HashMap<String, String> rstMap = null;
-		int status = commonUtil.StatusCode.INTERNAL_SERVER_ERROR;
+	@GetMapping({"/contractInfo/{uuid}"})
+	public HashMap<String, String> nftContractInfo(@PathVariable("uuid") String uuid) throws SQLException, IOException {
+		HashMap<String, String> rstMap = new HashMap<String, String>();
 		try {
 			OkHttpClient client = new OkHttpClient();
 
@@ -55,12 +53,14 @@ public class NftController {
 			  .build();
 
 			Response response = client.newCall(request).execute();
-			
+//			String rstString = response.body().toString();
+//			
+//			if(rstString != null || !rstString.isEmpty()) {
+//				rstMap.put("statusCode", "200");
+//			}
+
 			// 컨트랙트 정보 조회 등록 후 컨트랙트 주소와 고유 인덱스 map에 저장
 			rstMap = nftService.contractInfoIns(response);
-			System.out.println("컨트랙트 정보 조회 후 컨트랙트 주소, 고유값 조회 맵----"+ rstMap);
-			// 테스트 출력문
-//			rst.put("rst",response.body().string());
 			
 		}catch(Exception e){
 			System.out.println(e.toString());
@@ -75,20 +75,20 @@ public class NftController {
 	* @return : int
 	* @Author : se-in shin
 	**************************************************/
-	@PostMapping({"/nftContractOffer"})
+	@PostMapping("/nftContractOffer")
 	public HashMap<String, String> nftContractOffer(@RequestBody HashMap<String, String> paramMap) throws SQLException{
 		//System.out.println(paramMap);
 		//행사 정보
-		HashMap<String, String> rstMap = null;
+		HashMap<String, String> rstMap = new HashMap<String, String>();
 		String uuid = null;
 		
 		try {
 			//컨트랙트 배포 신청한 후 트랜잭션 uuid 값으로 컨트랙트 배포 정보 조회로 이동
 			uuid = nftService.contractOfferIns(paramMap);
-			rstMap = nftContractInfo(uuid);
+//			rstMap = nftContractInfo(uuid);
 			
 			//조회 완료 후 컨트랙트 주소 조회
-			
+			rstMap.put("uuid", uuid);
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.debug("error:" + e);
@@ -106,6 +106,7 @@ public class NftController {
 	 * @throws IOException 
 	* @Author : se-in shin
 	**************************************************/
+	@PostMapping("/nftItemOffer")
 	public HashMap<String, String> nftItemOffer(@RequestBody HashMap<String, String> paramMap) throws IOException, SQLException, ParseException {
 		HashMap<String, String> rstMap = new HashMap();
 		rstMap.put("status", "500");
