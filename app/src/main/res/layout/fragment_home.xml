@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HomeFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img_main_thumb"
+                        android:layout_width="1080px"
+                        android:layout_height="1100px"
+                        android:layout_alignParentTop="true"
+                        android:src="@drawable/img_main_thumb"
+                        android:scaleType="fitStart" />
+
+                    <ImageView
+                        android:id="@+id/img_home_cate"
+                        android:layout_width="1080px"
+                        android:layout_height="130px"
+                        android:layout_below="@id/img_main_thumb"
+                        android:src="@drawable/img_home_cate"
+                        android:scaleType = "fitXY"/>
+
+                    <TextView
+                        android:id="@+id/cate1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img_main_thumb"
+                        android:layout_marginLeft="102px"
+                        android:layout_marginTop="10dp"
+                        android:text="전시/행사"
+                        android:textColor="#6C6C6C"
+                        android:textFontWeight="700"
+                        android:textSize="36px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/cate2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img_main_thumb"
+                        android:layout_marginLeft="493px"
+                        android:layout_marginTop="10dp"
+                        android:text="북토크"
+                        android:textColor="#6C6C6C"
+                        android:textFontWeight="700"
+                        android:textSize="36px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/cate3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img_main_thumb"
+                        android:layout_marginLeft="853px"
+                        android:layout_marginTop="10dp"
+                        android:text="팬미팅"
+                        android:textColor="#6C6C6C"
+                        android:textFontWeight="700"
+                        android:textSize="36px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/end"
+                        android:layout_width="152dp"
+                        android:layout_height="29dp"
+                        android:layout_below="@id/img_home_cate"
+                        android:layout_marginLeft="58px"
+                        android:layout_marginTop="20dp"
+                        android:text="마감 임박 행사"
+                        android:textFontWeight="700"
+                        android:textStyle="bold"
+                        android:textColor="#505050"
+                        android:textSize="48px" />
+
+
+                    <ImageView
+                        android:id="@+id/img_home_card1"
+                        android:layout_width="510px"
+                        android:layout_height="458px"
+                        android:layout_marginLeft="68px"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/end"
+                        android:src="@drawable/img_home_card1"
+                        android:scaleType="fitCenter" />
+
+                    <ImageView
+                        android:id="@+id/img_home_card2"
+                        android:layout_width="202dp"
+                        android:layout_height="174dp"
+                        android:layout_below="@id/end"
+                        android:layout_marginLeft="618px"
+                        android:layout_marginTop="15dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_home_card2" />
+
+                    </RelativeLayout>
+                </ScrollView>
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_floating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginLeft="882px"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/icon_plus"
+            android:layout_margin="16dp"
+            app:backgroundTint="@android:color/transparent"
+            app:useCompatPadding="true" />
+
+        <ImageView
+            android:id="@+id/btn_rectangle"
+            android:layout_width="wrap_content"
+            android:layout_height="146px"
+            android:layout_above="@id/btn_floating"
+            android:layout_gravity="end|bottom"
+            android:layout_marginLeft="618px"
+            android:layout_marginBottom="85dp"
+            android:src="@drawable/icon_ticket" />
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
