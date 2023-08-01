@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TransactionDetailsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_grey">
+
+        <ImageView
+            android:id="@+id/background_white"
+            android:layout_width="1080px"
+            android:layout_height="1506px"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="1dp"
+            android:src="@drawable/background_white4" />
+
+        <ImageView
+            android:id="@+id/img_ticket_main"
+            android:layout_width="156px"
+            android:layout_height="220px"
+            android:layout_marginTop="50px"
+            android:layout_marginLeft="58px"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/img_ticket_main"
+            android:scaleType="fitStart" />
+
+        <ImageView
+            android:layout_width="48px"
+            android:layout_height="48px"
+            android:src="@drawable/icon_right"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="974px"
+            android:layout_marginTop="136px"/>
+
+        <TextView
+            android:id="@+id/cate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="254px"
+            android:layout_marginTop="60px"
+            android:text="전시 / 행사"
+            android:textSize="24px"
+            android:textStyle="bold"
+            android:textColor="#C1C1C1" />
+
+        <TextView
+            android:id="@+id/event_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cate"
+            android:layout_marginLeft="254px"
+            android:layout_marginTop="10px"
+            android:text="행사명 자리 행사명 자리 행사명 자리"
+            android:textSize="32px"
+            android:textStyle="bold"
+            android:textColor="#171717" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_name"
+            android:layout_marginLeft="254px"
+            android:layout_marginTop="35px"
+            android:text="행사 날짜 자리"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#C1C1C1" />
+
+        <TextView
+            android:id="@+id/palce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:layout_marginLeft="254px"
+            android:layout_marginTop="10px"
+            android:text="행사 장소 자리"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#C1C1C1" />
+
+        <ImageView
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_below="@id/img_ticket_main"
+            android:layout_marginTop="50px"
+            android:src="@drawable/line1"/>
+
+        <ImageView
+            android:id="@+id/rectangle"
+            android:layout_width="944px"
+            android:layout_height="455px"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="64px"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/img_rectangle3" />
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="64px"
+            android:layout_marginTop="50px"
+            android:text="예매 정보"
+            android:textSize="32px"
+            android:textStyle="bold"
+            android:textColor="#171717" />
+
+        <TextView
+            android:id="@+id/seller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="98px"
+            android:layout_marginTop="150px"
+            android:text="판매자"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#C1C1C1" />
+
+        <TextView
+            android:id="@+id/seller_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="304px"
+            android:layout_marginTop="150px"
+            android:text="가격 제안 일시 자리"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#6C6C6C" />
+
+        <ImageView
+            android:id="@+id/line2"
+            android:layout_width="944px"
+            android:layout_height="2px"
+            android:layout_below="@id/line1"
+            android:layout_marginTop="217px"
+            android:layout_marginLeft="64px"
+            android:src="@drawable/line1"/>
+
+        <TextView
+            android:id="@+id/proposal_pricce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="98px"
+            android:layout_marginTop="240px"
+            android:text="제안 가격"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#C1C1C1" />
+
+        <TextView
+            android:id="@+id/proposal_pricce_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="304px"
+            android:layout_marginTop="240px"
+            android:text="제안 가격 자리"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#6C6C6C" />
+
+        <ImageView
+            android:id="@+id/line3"
+            android:layout_width="944px"
+            android:layout_height="2px"
+            android:layout_below="@id/line1"
+            android:layout_marginTop="307px"
+            android:layout_marginLeft="64px"
+            android:src="@drawable/line1"/>
+
+        <TextView
+            android:id="@+id/transaction_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="98px"
+            android:layout_marginTop="330px"
+            android:text="거래 상태"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#C1C1C1" />
+
+        <TextView
+            android:id="@+id/transaction_state_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="304px"
+            android:layout_marginTop="330px"
+            android:text="거래 상태 자리"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#6C6C6C" />
+
+        <ImageView
+            android:id="@+id/line4"
+            android:layout_width="944px"
+            android:layout_height="2px"
+            android:layout_below="@id/line1"
+            android:layout_marginTop="397px"
+            android:layout_marginLeft="64px"
+            android:src="@drawable/line1"/>
+
+        <TextView
+            android:id="@+id/end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="98px"
+            android:layout_marginTop="420px"
+            android:text="취소가능일시"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#C1C1C1" />
+
+        <TextView
+            android:id="@+id/end_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="304px"
+            android:layout_marginTop="420px"
+            android:text="취소가능일시 자리"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#6C6C6C" />
+
+        <ImageView
+            android:id="@+id/line5"
+            android:layout_width="944px"
+            android:layout_height="2px"
+            android:layout_below="@id/line1"
+            android:layout_marginTop="487px"
+            android:layout_marginLeft="64px"
+            android:src="@drawable/line1"/>
+
+
+
+
+    </RelativeLayout>
+
+</FrameLayout>
