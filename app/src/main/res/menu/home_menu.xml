@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- 왼쪽에 하나의 아이콘 배치 -->
+    <item
+        android:id="@+id/icon_alarm"
+        android:icon="@drawable/icon_alarm"
+        android:title="Left Icon"
+        app:showAsAction="always" />
+
+    <!-- 오른쪽에 두 개의 아이콘 배치 -->
+    <item
+        android:id="@+id/icon_search_home"
+        android:icon="@drawable/icon_search_home"
+        android:title="Setting"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/icon_profile"
+        android:icon="@drawable/icon_profile"
+        android:title="Search"
+        app:showAsAction="always" />
+
+</menu>

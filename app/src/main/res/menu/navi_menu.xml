@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/first" app:showAsAction="ifRoom|withText" android:enabled="true"
+        android:icon="@drawable/icon_home_selector" android:title="홈" />
+    <item android:id="@+id/second" app:showAsAction="ifRoom|withText"
+        android:icon="@drawable/icon_menu" android:title="메뉴" />
+    <item android:id="@+id/third" app:showAsAction="ifRoom|withText" android:enabled="true"
+        android:icon="@drawable/icon_search" android:title="검색" />
+    <item android:id="@+id/fourth" app:showAsAction="ifRoom|withText" android:enabled="true"
+        android:icon="@drawable/icon_my" android:title="마이" />
+</menu>
