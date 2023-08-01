@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
+
+        <activity android:name=".RegistrationTicketActivity"
+            android:exported="false" />
         <activity android:name=".SuggestPriceActivity"
             android:exported="false" />
         <activity android:name=".EventDetail02Activity"
