@@ -2,8 +2,10 @@ package web3_hackathon.humanio
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
 import web3_hackathon.humanio.databinding.ActivitySuggestPriceBinding
 
+@AndroidEntryPoint
 class SuggestPriceActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySuggestPriceBinding
 
