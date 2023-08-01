@@ -41,13 +41,14 @@ public class UserService {
 		String uuid = null;
 		
 		// 부여받은 자식 주소 정보
+		String requestId = paramMap.get("requestId");
 		String amount = paramMap.get("amount");
 		String childAddress = paramMap.get("childAddress");
 		
 		//유저 1 정보 조회
 		Map<String, Object> userMap = userMapper.getUserInfo();
 //		String rsaKey = (String) userMap.get("rsaKey");
-		String requestId = (String) userMap.get("userNm"); 
+//		String requestId = (String) userMap.get("userNm"); 
 		requestId = requestId  + String.valueOf(tmp);
 		String apiToken =(String) userMap.get("apiToken");
 		String walletNum =(String) userMap.get("walletNum");

@@ -11,5 +11,7 @@ public interface NftMapper {
 	public int nftContractIns(HashMap<String, String> nftMap) throws SQLException;
 
 	public int nftTrIns(HashMap<String, String> nftTrMap) throws SQLException;
+
+	public int eventIns(HashMap<String, String> paramMap) throws SQLException;
 	
 }

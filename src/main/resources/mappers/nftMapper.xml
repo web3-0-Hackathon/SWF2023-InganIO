@@ -38,4 +38,18 @@
 			, finalizedDate = #{finalizedDate}
 	</insert>
 	
+	
+	<insert id="eventIns" parameterType="hashMap" useGeneratedKeys="true" keyProperty="eventId">
+		/* 행사 등록 */
+		INSERT INTO TB_EVENT SET
+		eventId = #{eventId}
+		,hostId = 1
+		,eventNm = #{eventNm}
+		,eventLocation = #{eventLocation}
+		,eventDate = #{eventDate}
+		,startPrice = #{startPrice}
+		,amount = #{amount}
+		,startDate = #{startDate}
+		,endDate = #{endDate}
+	</insert>
 </mapper>

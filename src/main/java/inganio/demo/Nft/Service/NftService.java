@@ -96,12 +96,24 @@ public class NftService {
 	* @MethodName : contractOfferIns
 	* @Description: NFT 컨트랙트 배포 신청
 	* @return : String
+	 * @throws SQLException 
 	* @Author : se-in shin
 	**************************************************/
-	public String contractOfferIns(HashMap<String, String> paramMap) throws IOException {
+	public String contractOfferIns(HashMap<String, String> paramMap) throws IOException, SQLException {
 		String eventNm = paramMap.get("eventNm");	//requestId, contractName
 		String symbol = paramMap.get("symbol");		// symbol, baseuri
 		
+		//행사 등록
+//		String eventLocation = paramMap.get("eventLocation");
+//		String eventDate = paramMap.get("eventDate");
+//		String startPrice = paramMap.get("startPrice");
+//		String amount = paramMap.get("amount");
+//		String startDate = paramMap.get("startDate");
+//		String endDate = paramMap.get("endDate");
+//		
+		int eventRst = nftMapper.eventIns(paramMap);
+		
+		// 컨트랙트 배포 신청
 		HashMap<String, Object> resultMap = null;
 		OkHttpClient client = new OkHttpClient();
 

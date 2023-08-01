@@ -44,7 +44,7 @@
 		,address = #{childAddress}
 	</insert> 
 	
-	<select id="getEventInfo" parameterType="hashMap" resultType="hasmMap">
+	<select id="getEventInfo" resultType="hashMap">
 		/* 사용자1 - 행사 정보 조회 */
 		SELECT *
 		FROM TB_EVENT

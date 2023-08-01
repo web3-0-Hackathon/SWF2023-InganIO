@@ -96,24 +96,24 @@ public class UserController {
 	* @throws IOException 
 	* @Author : se-in shin
 	**************************************************/
-	@SuppressWarnings("null")
 	@PostMapping({"/userWithdrawals"})
-	public Map<String, String> userWithdrawals(@RequestBody HashMap<String, String> paramMap) throws IOException, SQLException, ParseException{
+	public HashMap<String, String> userWithdrawals(@RequestBody HashMap<String, String> paramMap) throws IOException, SQLException, ParseException{
 		String tranStatus = "";
+		HashMap<String, String> statusMap = new HashMap<String,String>();
 		try {
 			tranStatus = userService.userWithdrawals(paramMap);
 			// 출금이 완료되었다면 호스트 대표주소에서 유저에게 자식 주소 출금
+			statusMap.put("statusCode", tranStatus);
+			System.out.println(statusMap);
+			System.out.println(tranStatus);
 			if (tranStatus.equals("SENT")){
 				tranStatus = userService.NftWithdrawalsOffer(paramMap);
+				statusMap.put("statusCode", tranStatus);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.debug("error:"+ e);
 		}
-		
-		Map<String, String> statusMap = null;
-		statusMap.put("statusCode", tranStatus);
-		
 		//아니면 에러코드 반환.
 		return statusMap;
 	} 
