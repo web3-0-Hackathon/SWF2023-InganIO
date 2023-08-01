@@ -1,4 +1,4 @@
-package web3_hackathon.humanio.data.api
+package web3_hackathon.humanio.data.api.octet
 
 import retrofit2.Call
 import retrofit2.http.Body
